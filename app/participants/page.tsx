@@ -1,12 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { useParticipantsStore } from '../store/useParticipants';
+import { useStore } from '../store/useStore';
 import ParticipantsList from '../components/ParticipantsList';
 import Link from 'next/link';
 
 export default function Participants() {
-  const { participants, addParticipant } =
-    useParticipantsStore();
+  const { participants, addParticipant } = useStore();
   const [newName, setNewName] = useState<string>('');
   const [error, setError] = useState<string>('');
 
