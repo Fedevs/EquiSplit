@@ -7,6 +7,7 @@ interface StoreState {
   totalExpenses: number;
   addParticipant: (name: string) => void;
   setTotalExpenses: (value: number) => void;
+  updateMoney: (name: string, newMoney: number) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -21,4 +22,12 @@ export const useStore = create<StoreState>((set) => ({
     })),
   setTotalExpenses: (value: number) =>
     set({ totalExpenses: value }),
+  updateMoney: (name, newMoney) =>
+    set((state) => ({
+      participants: state.participants.map((participant) =>
+        participant.name === name
+          ? { ...participant, money: newMoney }
+          : participant
+      ),
+    })),
 }));

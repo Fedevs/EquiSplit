@@ -1,8 +1,15 @@
 'use client';
+import Link from 'next/link';
 import { useStore } from '../store/useStore';
+import ParticipantsMoneyForm from '../components/ParticipantsMoneyForm';
 
 export default function Expenses() {
-  const { totalExpenses, setTotalExpenses } = useStore();
+  const {
+    participants,
+    totalExpenses,
+    setTotalExpenses,
+    updateMoney,
+  } = useStore();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -11,25 +18,22 @@ export default function Expenses() {
     setTotalExpenses(inputValue);
   };
 
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {};
-
   return (
     <section>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='totalExpenses'>
-          Total expenses
-        </label>
-        <input
-          type='number'
-          id='totalExpenses'
-          value={totalExpenses}
-          required
-          min={0}
-          onChange={handleChange}
-        />
-      </form>
+      <label htmlFor='totalExpenses'>Total expenses</label>
+      <input
+        type='number'
+        id='totalExpenses'
+        value={totalExpenses}
+        required
+        onChange={handleChange}
+      />
+      <ParticipantsMoneyForm />
+      <div>
+        <button>
+          <Link href='/participants'>back</Link>
+        </button>
+      </div>
     </section>
   );
 }
