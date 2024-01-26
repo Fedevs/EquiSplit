@@ -16,6 +16,25 @@ export type setTransactionsType = (
   transactions: transactionType[]
 ) => void;
 
+type State = {
+  participants: participantType[];
+  transactions: transactionType[];
+  totalExpenses: number;
+  activeStep: number;
+};
+
+type Actions = {
+  addParticipant: (name: string) => void;
+  setTotalExpenses: (value: number) => void;
+  updateContribution: (
+    name: string,
+    contribution: number
+  ) => void;
+  setTransactions: setTransactionsType;
+  setActiveStep: (step: number) => void;
+  reset: () => void;
+};
+
 const initialParticipantsDATA: participantType[] = [
   { name: 'Fede', contribution: 600 },
   { name: 'Nadia', contribution: 800 },
@@ -30,49 +49,43 @@ const initialExpenses: number =
     0
   );
 
-interface StoreState {
-  participants: participantType[];
-  transactions: transactionType[];
-  totalExpenses: number;
-  activeStep: number;
-  setTransactions: setTransactionsType;
-  addParticipant: (name: string) => void;
-  setTotalExpenses: (value: number) => void;
-  updateContribution: (
-    name: string,
-    contribution: number
-  ) => void;
-  setActiveStep: (step: number) => void;
-}
-
-export const useStore = create<StoreState>((set) => ({
+const initialState: State = {
   participants: initialParticipantsDATA,
   transactions: [],
   totalExpenses: initialExpenses,
   activeStep: 0,
-  addParticipant: (name: string) =>
-    set((state) => ({
-      participants: [
-        ...state.participants,
-        { name, contribution: 0 },
-      ],
-    })),
-  setTotalExpenses: (value: number) =>
-    set(() => ({ totalExpenses: value })),
-  updateContribution: (name, contribution) =>
-    set((state) => ({
-      participants: state.participants.map((participant) =>
-        participant.name === name
-          ? { ...participant, contribution }
-          : participant
-      ),
-    })),
-  setTransactions: (transactions: transactionType[]) =>
-    set(() => ({
-      transactions: [...transactions],
-    })),
-  setActiveStep: (step: number) =>
-    set(() => ({
-      activeStep: step,
-    })),
-}));
+};
+
+export const useStore = create<State & Actions>()(
+  (set, get) => ({
+    ...initialState,
+    addParticipant: (name: string) =>
+      set({
+        participants: [
+          ...get().participants,
+          { name, contribution: 0 },
+        ],
+      }),
+    setTotalExpenses: (value: number) =>
+      set({ totalExpenses: value }),
+    updateContribution: (
+      name: string,
+      contribution: number
+    ) =>
+      set({
+        participants: get().participants.map(
+          (participant) =>
+            participant.name === name
+              ? { name: participant.name, contribution }
+              : participant
+        ),
+      }),
+    setTransactions: (transactions: transactionType[]) =>
+      set({ transactions }),
+    setActiveStep: (step: number) =>
+      set({ activeStep: step }),
+    reset: () => {
+      set(initialState);
+    },
+  })
+);
