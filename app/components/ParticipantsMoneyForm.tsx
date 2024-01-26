@@ -3,25 +3,35 @@
 import { useStore } from '../store/useStore';
 
 export default function ParticipantsMoneyForm() {
-  const { participants, updateContribution } = useStore();
-
-  const totalExpenses = participants.reduce(
-    (accumulator, participants) =>
-      accumulator + participants.contribution,
-    0
-  );
+  const {
+    participants,
+    updateContribution,
+    totalExpenses,
+    setTotalExpenses,
+  } = useStore();
 
   const handleContributionChange = (
     name: string,
     contribution: string
-  ) => {
+  ): void => {
     const value = parseFloat(contribution);
     updateContribution(name, value);
+    setTotalExpenses(calculateTotalExpenses());
+  };
+
+  const calculateTotalExpenses = (): number => {
+    const updatedParticipants =
+      useStore.getState().participants;
+    return updatedParticipants.reduce(
+      (accumulator, participant) =>
+        (accumulator += participant.contribution),
+      0
+    );
   };
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement>
-  ) => {
+  ): void => {
     e.preventDefault();
   };
 
@@ -32,7 +42,8 @@ export default function ParticipantsMoneyForm() {
           Name: {name}, Contribution:
           <input
             type='number'
-            value={contribution}
+            value={contribution > 0 ? contribution : ''}
+            min={0}
             onChange={(e) =>
               handleContributionChange(name, e.target.value)
             }
