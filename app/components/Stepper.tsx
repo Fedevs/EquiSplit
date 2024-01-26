@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { ReactNode } from 'react';
 import { useStore } from '../store/useStore';
 import Welcome from './Welcome';
-import ParticipantsAndContributions from './ParticipantsAndContributions';
+import ParticipantManager from './ParticipantManager/ParticipantManager';
 import Transactions from './Transactions';
 
 const steps = [
@@ -41,7 +41,7 @@ export default function HorizontalLinearStepper() {
       buttonText: 'Add participants',
     },
     1: {
-      component: <ParticipantsAndContributions />,
+      component: <ParticipantManager />,
       buttonText: 'Calculate',
     },
     2: {

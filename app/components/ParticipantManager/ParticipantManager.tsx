@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { useStore } from '../store/useStore';
-import ParticipantsList from '../components/ParticipantsList';
+import { useStore } from '../../store/useStore';
+import ParticipantsList from '../ParticipantsList';
 
-export default function ParticipantsAndContributions() {
+export default function ParticipantManager() {
   const { participants, addParticipant } = useStore();
   const [newName, setNewName] = useState<string>('');
   const [error, setError] = useState<string>('');

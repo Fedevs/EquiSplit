@@ -19,8 +19,7 @@ export default function ParticipantsList() {
   };
 
   const calculateTotalExpenses = (): number => {
-    const updatedParticipants =
-      useStore.getState().participants;
+    const updatedParticipants = participants;
     return updatedParticipants.reduce(
       (accumulator, participant) =>
         (accumulator += participant.contribution),
@@ -33,7 +32,7 @@ export default function ParticipantsList() {
       <div className='my-9'>TOTAL: {totalExpenses}</div>
       {participants.map(({ name, contribution }) => (
         <div key={name}>
-          Name: {name}, Contribution:
+          Name: <span>{name}</span>, Contribution:
           <input
             type='number'
             value={contribution > 0 ? contribution : ''}
