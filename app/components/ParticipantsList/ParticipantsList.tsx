@@ -19,7 +19,8 @@ export default function ParticipantsList() {
   };
 
   const calculateTotalExpenses = (): number => {
-    const updatedParticipants = participants;
+    const updatedParticipants =
+      useStore.getState().participants;
     return updatedParticipants.reduce(
       (accumulator, participant) =>
         (accumulator += participant.contribution),
