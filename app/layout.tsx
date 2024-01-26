@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Split Money',
-  description: 'An app to calculate who owes whom',
+  title: 'Split Expenses',
+  description: 'An app for settling debts quickly.',
 };
 
 export default function RootLayout({
