@@ -12,6 +12,10 @@ export type transactionType = {
   amount: number;
 };
 
+export type setTransactionsType = (
+  transactions: transactionType[]
+) => void;
+
 const initialParticipantsDATA: participantType[] = [
   { name: 'Fede', contribution: 600 },
   { name: 'Nadia', contribution: 800 },
@@ -31,9 +35,7 @@ interface StoreState {
   transactions: transactionType[];
   totalExpenses: number;
   activeStep: number;
-  setTransactions: (
-    transactions: transactionType[]
-  ) => void;
+  setTransactions: setTransactionsType;
   addParticipant: (name: string) => void;
   setTotalExpenses: (value: number) => void;
   updateContribution: (

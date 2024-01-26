@@ -2,9 +2,8 @@
 import { useState } from 'react';
 import { useStore } from '../store/useStore';
 import ParticipantsList from '../components/ParticipantsList';
-import Link from 'next/link';
 
-export default function Participants() {
+export default function ParticipantsAndContributions() {
   const { participants, addParticipant } = useStore();
   const [newName, setNewName] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -15,10 +14,7 @@ export default function Participants() {
     setNewName(e.target.value);
   };
 
-  const handleSubmit = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
+  const handleAddParticipantClick = () => {
     setError('');
     if (isUniqueName(newName)) addParticipant(newName);
     else {
@@ -38,29 +34,23 @@ export default function Participants() {
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='newName'>Add participant</label>
-        <input
-          type='text'
-          id='newName'
-          value={newName}
-          onChange={handleChange}
-        />
-        <button type='submit'>Add</button>
-      </form>
-      {participants.map((participant, index) => (
-        <ul key={`${participant.name}_${index}`}>
-          <li>
-            <ParticipantsList name={participant.name} />
-          </li>
-        </ul>
-      ))}
+      <label htmlFor='newName'>Add participant</label>
+      <input
+        type='text'
+        id='newName'
+        value={newName}
+        onChange={handleChange}
+      />
+      <button
+        type='button'
+        onClick={handleAddParticipantClick}
+      >
+        Add
+      </button>
+
+      <ParticipantsList />
+
       {error && <div>{error}</div>}
-      <div>
-        <button>
-          <Link href='/expenses'>ADD MONEY</Link>
-        </button>
-      </div>
     </section>
   );
 }
