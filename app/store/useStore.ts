@@ -1,11 +1,18 @@
 import { create } from 'zustand';
 
-type participant = {
+export type participantType = {
   name: string;
   contribution: number;
+  balance?: number;
 };
 
-const initialParticipantsDATA: participant[] = [
+export type transactionType = {
+  from: string;
+  to: string;
+  amount: number;
+};
+
+const initialParticipantsDATA: participantType[] = [
   { name: 'Fede', contribution: 600 },
   { name: 'Nadia', contribution: 800 },
   { name: 'Huw', contribution: 420 },
@@ -20,8 +27,12 @@ const initialExpenses: number =
   );
 
 interface StoreState {
-  participants: participant[];
+  participants: participantType[];
+  transactions: transactionType[];
   totalExpenses: number;
+  setTransactions: (
+    transactions: transactionType[]
+  ) => void;
   addParticipant: (name: string) => void;
   setTotalExpenses: (value: number) => void;
   updateContribution: (
@@ -32,6 +43,7 @@ interface StoreState {
 
 export const useStore = create<StoreState>((set) => ({
   participants: initialParticipantsDATA,
+  transactions: [],
   totalExpenses: initialExpenses,
   addParticipant: (name: string) =>
     set((state) => ({
@@ -43,20 +55,15 @@ export const useStore = create<StoreState>((set) => ({
   setTotalExpenses: (value: number) =>
     set(() => ({ totalExpenses: value })),
   updateContribution: (name, contribution) =>
-    set((state) => {
-      console.log(
-        'Updating contribution for',
-        name,
-        'to',
-        contribution
-      );
-      return {
-        participants: state.participants.map(
-          (participant) =>
-            participant.name === name
-              ? { ...participant, contribution }
-              : participant
-        ),
-      };
-    }),
+    set((state) => ({
+      participants: state.participants.map((participant) =>
+        participant.name === name
+          ? { ...participant, contribution }
+          : participant
+      ),
+    })),
+  setTransactions: (transactions: transactionType[]) =>
+    set(() => ({
+      transactions: [...transactions],
+    })),
 }));
