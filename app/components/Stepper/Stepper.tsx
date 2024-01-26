@@ -18,7 +18,7 @@ const steps = [
 ];
 
 export default function HorizontalLinearStepper() {
-  const { activeStep, setActiveStep } = useStore();
+  const { activeStep, setActiveStep, reset } = useStore();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -29,7 +29,7 @@ export default function HorizontalLinearStepper() {
   };
 
   const handleReset = () => {
-    setActiveStep(0);
+    reset();
   };
 
   const stepOptions: Record<
