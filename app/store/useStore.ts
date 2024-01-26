@@ -1,32 +1,30 @@
 import { create } from 'zustand';
 
-type participant = { name: string; money: number };
+type participant = { name: string; contribution: number };
 
 interface StoreState {
   participants: participant[];
-  totalExpenses: number;
   addParticipant: (name: string) => void;
-  setTotalExpenses: (value: number) => void;
-  updateMoney: (name: string, newMoney: number) => void;
+  updateContribution: (
+    name: string,
+    contribution: number
+  ) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
   participants: [],
-  totalExpenses: 0,
   addParticipant: (name: string) =>
     set((state) => ({
       participants: [
         ...state.participants,
-        { name, money: 0 },
+        { name, contribution: 0 },
       ],
     })),
-  setTotalExpenses: (value: number) =>
-    set({ totalExpenses: value }),
-  updateMoney: (name, newMoney) =>
+  updateContribution: (name, contribution) =>
     set((state) => ({
       participants: state.participants.map((participant) =>
         participant.name === name
-          ? { ...participant, money: newMoney }
+          ? { ...participant, contribution }
           : participant
       ),
     })),

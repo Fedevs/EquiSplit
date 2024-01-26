@@ -1,15 +1,22 @@
 'use client';
+
 import { useStore } from '../store/useStore';
 
 export default function ParticipantsMoneyForm() {
-  const { participants, updateMoney } = useStore();
+  const { participants, updateContribution } = useStore();
 
-  const handleMoneyChange = (
+  const totalExpenses = participants.reduce(
+    (accumulator, participants) =>
+      accumulator + participants.contribution,
+    0
+  );
+
+  const handleContributionChange = (
     name: string,
-    newMoney: string
+    contribution: string
   ) => {
-    const money = parseFloat(newMoney);
-    updateMoney(name, money);
+    const value = parseFloat(contribution);
+    updateContribution(name, value);
   };
 
   const handleSubmit = (
@@ -20,18 +27,23 @@ export default function ParticipantsMoneyForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {participants.map(({ name, money }) => (
+      {participants.map(({ name, contribution }) => (
         <div key={name}>
-          Name: {name}, Money:
+          Name: {name}, Contribution:
           <input
             type='number'
-            value={money}
+            value={contribution}
             onChange={(e) =>
-              handleMoneyChange(name, e.target.value)
+              handleContributionChange(name, e.target.value)
             }
           />
         </div>
       ))}
+
+      <div>
+        Total Expenses:
+        {totalExpenses > 0 ? totalExpenses : 0}
+      </div>
     </form>
   );
 }
