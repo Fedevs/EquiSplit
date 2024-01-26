@@ -33,7 +33,7 @@ export default function ParticipantManager() {
   };
 
   return (
-    <section>
+    <section data-testid='participant-manager'>
       <label htmlFor='newName'>Add participant</label>
       <input
         type='text'

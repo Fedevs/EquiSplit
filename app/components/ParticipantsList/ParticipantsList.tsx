@@ -29,7 +29,9 @@ export default function ParticipantsList() {
 
   return (
     <div>
-      <div className='my-9'>TOTAL: {totalExpenses}</div>
+      <div className='my-9' data-testid='participants-list'>
+        TOTAL: {totalExpenses}
+      </div>
       {participants.map(({ name, contribution }) => (
         <div key={name}>
           Name: <span>{name}</span>, Contribution:

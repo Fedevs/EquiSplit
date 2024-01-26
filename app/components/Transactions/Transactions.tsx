@@ -4,7 +4,7 @@ const TransactionsComponent = () => {
   const transactions = useTransactions();
 
   return (
-    <section>
+    <section data-testid='transactions'>
       {transactions.map((transaction, index) => (
         <div key={index}>
           {transaction.from} owes {transaction.amount} to{' '}

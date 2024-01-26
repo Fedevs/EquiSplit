@@ -1,3 +1,7 @@
 export default function Welcome() {
-  return <>Welcome message here</>;
+  return (
+    <section data-testid='welcome'>
+      Welcome to the app
+    </section>
+  );
 }
