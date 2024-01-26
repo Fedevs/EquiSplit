@@ -30,6 +30,7 @@ interface StoreState {
   participants: participantType[];
   transactions: transactionType[];
   totalExpenses: number;
+  activeStep: number;
   setTransactions: (
     transactions: transactionType[]
   ) => void;
@@ -39,12 +40,14 @@ interface StoreState {
     name: string,
     contribution: number
   ) => void;
+  setActiveStep: (step: number) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
   participants: initialParticipantsDATA,
   transactions: [],
   totalExpenses: initialExpenses,
+  activeStep: 0,
   addParticipant: (name: string) =>
     set((state) => ({
       participants: [
@@ -65,5 +68,9 @@ export const useStore = create<StoreState>((set) => ({
   setTransactions: (transactions: transactionType[]) =>
     set(() => ({
       transactions: [...transactions],
+    })),
+  setActiveStep: (step: number) =>
+    set(() => ({
+      activeStep: step,
     })),
 }));

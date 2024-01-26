@@ -81,9 +81,6 @@ export default function Expenses() {
           <Link href='/participants'>back</Link>
         </button>
       </div>
-      {/* {transactions.map((el, index) => (
-        <div key={index}>{el}</div>
-      ))} */}
     </section>
   );
 }
