@@ -6,10 +6,10 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import { ReactNode } from 'react';
-import { useStore } from '../store/useStore';
-import Welcome from './Welcome';
-import ParticipantManager from './ParticipantManager/ParticipantManager';
-import Transactions from './Transactions';
+import { useStore } from '@/app/store/useStore';
+import Welcome from '@/app/components/Welcome/Welcome';
+import ParticipantManager from '@/app/components/ParticipantManager/ParticipantManager';
+import Transactions from '@/app/components/Transactions/Transactions';
 
 const steps = [
   'Welcome',

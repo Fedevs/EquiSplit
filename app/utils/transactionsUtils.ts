@@ -2,7 +2,7 @@ import {
   participantType,
   setTransactionsType,
   transactionType,
-} from '../store/useStore';
+} from '@/app/store/useStore';
 
 export const getEqualContribution = (
   totalExpenses: number,

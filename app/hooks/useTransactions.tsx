@@ -1,7 +1,7 @@
 // useTransactions.ts
 
 import { useEffect } from 'react';
-import { useStore } from '../store/useStore';
+import { useStore } from '@/app/store/useStore';
 import {
   getEqualContribution,
   getDebtsAndCredits,
