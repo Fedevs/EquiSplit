@@ -13,12 +13,13 @@ import Transactions from '@/app/components/Transactions/Transactions';
 
 const steps = [
   'Welcome',
-  'Add Participants and contributions',
+  'Add information',
   'Transactions',
 ];
 
 export default function HorizontalLinearStepper() {
   const { activeStep, setActiveStep, reset } = useStore();
+  console.log('test precommit ls');
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
