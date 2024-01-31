@@ -9,6 +9,7 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
+    "prepare": "husky",
     "precommit": "lint-staged"
   },
   "dependencies": {
