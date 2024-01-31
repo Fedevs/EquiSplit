@@ -42,11 +42,14 @@ export default function ParticipantManager() {
       data-testid='participant-manager'
       className='w-full flex flex-col items-center'
     >
-      <div className='flex flex-col items-center w-full gap-3'>
-        <label htmlFor='newName' className='font-bold'>
+      <div className='flex flex-col w-full gap-3'>
+        <label
+          htmlFor='newName'
+          className='font-bold text-center'
+        >
           Add participant
         </label>
-        <div className='flex justify-between gap-1'>
+        <div className='flex flex-col justify-center gap-1 px-2 xs:flex-row'>
           <input
             type='text'
             ref={inputRef}
@@ -64,18 +67,18 @@ export default function ParticipantManager() {
           <button
             type='button'
             onClick={handleAddParticipantClick}
-            className='transition duration-300 ease text-white bg-blue-700 hover:bg-gray-700 rounded-lg text-sm px-5 py-2.5'
+            className='transition duration-300 ease text-white bg-blue-500 hover:bg-gray-700 rounded-lg text-sm px-5 py-2.5'
           >
             ADD
           </button>
         </div>
       </div>
-
-      <ParticipantsList />
-
       {error && (
-        <div className='text-red-500 mt-2'>{error}</div>
+        <div className='text-red-500 my-2 text-center'>
+          {error}
+        </div>
       )}
+      <ParticipantsList />
     </section>
   );
 }

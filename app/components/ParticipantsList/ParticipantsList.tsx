@@ -31,10 +31,13 @@ export default function ParticipantsList() {
   return (
     <div className='w-full flex flex-col gap-3 px-1'>
       <div
-        className='flex my-5 justify-center'
+        className='flex items-center my-5 justify-center'
         data-testid='participants-list'
       >
-        Total:&nbsp;<b>{totalExpenses.toFixed(2)}</b>
+        Total:&nbsp;
+        <span className='font-bold text-red-500 text-lg'>
+          {totalExpenses.toFixed(2)}
+        </span>
       </div>
       <form className='flex flex-col gap-3'>
         {participants.map(({ name, contribution }) => (
