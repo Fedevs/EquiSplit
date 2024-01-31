@@ -15,7 +15,7 @@ describe('ParticipantManager', () => {
     render(<ParticipantManager />);
 
     // Write a name on the input related to this label
-    const input = screen.getByLabelText('Add participant:');
+    const input = screen.getByLabelText('Add participant');
     fireEvent.change(input, {
       target: { value: 'Lio Messi' },
     });
@@ -26,14 +26,14 @@ describe('ParticipantManager', () => {
 
     // Find that name
     expect(
-      screen.getByText('Lio Messi')
+      screen.getByText(/\bLio Messi\b/i)
     ).toBeInTheDocument();
   });
 
   test('displays an error message for duplicate names', () => {
     render(<ParticipantManager />);
 
-    const input = screen.getByLabelText('Add participant:');
+    const input = screen.getByLabelText('Add participant');
     fireEvent.change(input, {
       target: { value: 'Lio Messi' },
     });

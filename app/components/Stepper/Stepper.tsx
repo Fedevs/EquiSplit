@@ -75,37 +75,41 @@ export default function HorizontalLinearStepper() {
       data-testid='stepper'
       className='h-screen py-4 flex flex-col justify-between'
     >
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: ReactNode } = {};
+      <div className='flex flex-col gap-5'>
+        <Stepper activeStep={activeStep}>
+          {steps.map((label, index) => {
+            const stepProps: { completed?: boolean } = {};
+            const labelProps: { optional?: ReactNode } = {};
 
-          // Verificar si es mobile para ocultar las StepLabels
-          if (isMobile) {
-            // Si es mobile, solo mostrar el número y ocultar la etiqueta
+            // Verificar si es mobile para ocultar las StepLabels
+            if (isMobile) {
+              // Si es mobile, solo mostrar el número y ocultar la etiqueta
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel />
+                </Step>
+              );
+            }
+
+            // Si no es mobile, mostrar tanto el número como la etiqueta
             return (
               <Step key={label} {...stepProps}>
-                <StepLabel />
+                <StepLabel
+                  sx={{
+                    flexDirection: 'column',
+                    gap: '2px',
+                  }}
+                  {...labelProps}
+                >
+                  {label}
+                </StepLabel>
               </Step>
             );
-          }
-
-          // Si no es mobile, mostrar tanto el número como la etiqueta
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel
-                sx={{ flexDirection: 'column', gap: '2px' }}
-                {...labelProps}
-              >
-                {label}
-              </StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <div className='flex justify-start h-full mt-4 overflow-scroll'>
+          })}
+        </Stepper>
         {stepOptions[activeStep].component}
       </div>
+
       <Box
         sx={{
           display: 'flex',
