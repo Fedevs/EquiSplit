@@ -19,7 +19,7 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
   const { activeStep, setActiveStep, reset } = useStore();
-  console.log('test precommit ls');
+  console.log('test precommit');
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
