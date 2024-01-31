@@ -5,7 +5,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useStore } from '@/app/store/useStore';
 import Welcome from '@/app/components/Welcome/Welcome';
 import ParticipantManager from '@/app/components/ParticipantManager/ParticipantManager';
@@ -19,6 +19,25 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
   const { activeStep, setActiveStep, reset } = useStore();
+  const [isMobile, setIsMobile] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 480);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
+    };
+  }, [isMobile]);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -51,14 +70,27 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: '100%' }} data-testid='stepper'>
+    <Box
+      sx={{ width: '100%' }}
+      data-testid='stepper'
+      className='h-screen py-4 flex flex-col justify-between'
+    >
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
-          const labelProps: {
-            optional?: ReactNode;
-          } = {};
+          const labelProps: { optional?: ReactNode } = {};
 
+          // Verificar si es mobile para ocultar las StepLabels
+          if (isMobile) {
+            // Si es mobile, solo mostrar el número y ocultar la etiqueta
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel />
+              </Step>
+            );
+          }
+
+          // Si no es mobile, mostrar tanto el número como la etiqueta
           return (
             <Step key={label} {...stepProps}>
               <StepLabel
@@ -71,37 +103,36 @@ export default function HorizontalLinearStepper() {
           );
         })}
       </Stepper>
-
-      <>
+      <div className='flex justify-start h-full mt-4 overflow-scroll'>
         {stepOptions[activeStep].component}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            pt: 2,
-          }}
+      </div>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          pt: 2,
+        }}
+      >
+        <Button
+          color='inherit'
+          disabled={activeStep === 0}
+          onClick={handleBack}
+          sx={{ mr: 1 }}
         >
-          <Button
-            color='inherit'
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            sx={{ mr: 1 }}
-          >
-            Back
-          </Button>
-          <Box sx={{ flex: '1 1 auto' }} />
+          Back
+        </Button>
+        <Box sx={{ flex: '1 1 auto' }} />
 
-          <Button
-            onClick={
-              activeStep === steps.length - 1
-                ? handleReset
-                : handleNext
-            }
-          >
-            {stepOptions[activeStep].buttonText}
-          </Button>
-        </Box>
-      </>
+        <Button
+          onClick={
+            activeStep === steps.length - 1
+              ? handleReset
+              : handleNext
+          }
+        >
+          {stepOptions[activeStep].buttonText}
+        </Button>
+      </Box>
     </Box>
   );
 }
