@@ -1,4 +1,3 @@
-// ParticipantManager.test.tsx
 import {
   render,
   screen,
@@ -16,7 +15,7 @@ describe('ParticipantManager', () => {
     render(<ParticipantManager />);
 
     // Write a name on the input related to this label
-    const input = screen.getByLabelText('Add participant');
+    const input = screen.getByLabelText('Add participant:');
     fireEvent.change(input, {
       target: { value: 'Lio Messi' },
     });
@@ -34,7 +33,7 @@ describe('ParticipantManager', () => {
   test('displays an error message for duplicate names', () => {
     render(<ParticipantManager />);
 
-    const input = screen.getByLabelText('Add participant');
+    const input = screen.getByLabelText('Add participant:');
     fireEvent.change(input, {
       target: { value: 'Lio Messi' },
     });
@@ -43,7 +42,7 @@ describe('ParticipantManager', () => {
     fireEvent.click(addButton);
 
     expect(
-      screen.getByText(/already a participant/i)
+      screen.getByText(/\bconsider using a nickname\b/i)
     ).toBeInTheDocument();
   });
 });
