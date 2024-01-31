@@ -57,7 +57,7 @@ export default function HorizontalLinearStepper() {
   > = {
     0: {
       component: <Welcome />,
-      buttonText: 'Add participants',
+      buttonText: 'Next',
     },
     1: {
       component: <ParticipantManager />,
@@ -73,61 +73,37 @@ export default function HorizontalLinearStepper() {
     <Box
       sx={{ width: '100%' }}
       data-testid='stepper'
-      className='h-screen py-4 flex flex-col justify-between'
+      className='relative py-4 flex flex-col justify-between'
     >
       <div className='flex flex-col gap-5'>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const stepProps: { completed?: boolean } = {};
-            const labelProps: { optional?: ReactNode } = {};
 
-            // Verificar si es mobile para ocultar las StepLabels
-            if (isMobile) {
-              // Si es mobile, solo mostrar el número y ocultar la etiqueta
-              return (
-                <Step key={label} {...stepProps}>
-                  <StepLabel />
-                </Step>
-              );
-            }
-
-            // Si no es mobile, mostrar tanto el número como la etiqueta
             return (
               <Step key={label} {...stepProps}>
-                <StepLabel
-                  sx={{
-                    flexDirection: 'column',
-                    gap: '2px',
-                  }}
-                  {...labelProps}
-                >
-                  {label}
-                </StepLabel>
+                <StepLabel />
               </Step>
             );
           })}
         </Stepper>
-        {stepOptions[activeStep].component}
+        <div className='w-full mb-[70px]'>
+          {stepOptions[activeStep].component}
+        </div>
       </div>
 
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          pt: 2,
-        }}
-      >
+      <Box className='fixed m-0 bottom-0 flex justify-around items-center w-full max-w-screen-md bg-white z-2 py-3'>
         <Button
+          className=''
           color='inherit'
           disabled={activeStep === 0}
           onClick={handleBack}
-          sx={{ mr: 1 }}
         >
           Back
         </Button>
-        <Box sx={{ flex: '1 1 auto' }} />
 
         <Button
+          className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
           onClick={
             activeStep === steps.length - 1
               ? handleReset

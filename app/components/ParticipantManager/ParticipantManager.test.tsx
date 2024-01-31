@@ -20,8 +20,8 @@ describe('ParticipantManager', () => {
       target: { value: 'Lio Messi' },
     });
 
-    // Click on button "Add"
-    const addButton = screen.getByText('Add');
+    // Click on button "ADD"
+    const addButton = screen.getByText('ADD');
     fireEvent.click(addButton);
 
     // Find that name
@@ -38,7 +38,7 @@ describe('ParticipantManager', () => {
       target: { value: 'Lio Messi' },
     });
 
-    const addButton = screen.getByText('Add');
+    const addButton = screen.getByText('ADD');
     fireEvent.click(addButton);
 
     expect(

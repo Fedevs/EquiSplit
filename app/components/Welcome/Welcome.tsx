@@ -5,8 +5,8 @@ export default function Welcome() {
       style={{ height: 'fit-content' }}
       className='p-4 max-w-2xl mx-auto'
     >
-      <h1 className='text-3xl font-bold mb-4'>
-        Welcome to our Expense Splitting App
+      <h1 className='text-3xl font-bold mb-4 text-center  '>
+        Expense Splitting App
       </h1>
       <p className='text-gray-700'>
         This tool is designed to simplify the management of
@@ -31,7 +31,7 @@ export default function Welcome() {
 
       <div className='mt-6'>
         <h2 className='text-xl font-semibold mb-2'>
-          Step 2: Add Participants and Contributions
+          Step 2: Add information
         </h2>
         <p className='text-gray-700'>
           In the second step, you can add all the
