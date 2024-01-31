@@ -5,7 +5,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from '@/app/store/useStore';
 import Welcome from '@/app/components/Welcome/Welcome';
 import ParticipantManager from '@/app/components/ParticipantManager/ParticipantManager';
@@ -103,7 +103,7 @@ export default function HorizontalLinearStepper() {
         </Button>
 
         <Button
-          className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+          className='transition duration-300 ease text-white bg-blue-500 hover:bg-gray-700 rounded-lg text-sm px-5 py-2.5'
           onClick={
             activeStep === steps.length - 1
               ? handleReset
