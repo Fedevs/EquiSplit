@@ -19,6 +19,7 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
   const { activeStep, setActiveStep, reset } = useStore();
+  console.log('test linter');
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
