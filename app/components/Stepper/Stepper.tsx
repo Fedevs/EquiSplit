@@ -13,7 +13,7 @@ import Transactions from '@/app/components/Transactions/Transactions';
 
 const steps = [
   'Welcome',
-  'Add Participants and contributions',
+  'Add information',
   'Transactions',
 ];
 
