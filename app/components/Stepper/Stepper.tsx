@@ -5,7 +5,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from '@/app/store/useStore';
 import Welcome from '@/app/components/Welcome/Welcome';
 import ParticipantManager from '@/app/components/ParticipantManager/ParticipantManager';
@@ -19,7 +19,25 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
   const { activeStep, setActiveStep, reset } = useStore();
-  console.log('test precommit ls');
+  const [isMobile, setIsMobile] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 480);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
+    };
+  }, [isMobile]);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -39,7 +57,7 @@ export default function HorizontalLinearStepper() {
   > = {
     0: {
       component: <Welcome />,
-      buttonText: 'Add participants',
+      buttonText: 'Next',
     },
     1: {
       component: <ParticipantManager />,
@@ -52,57 +70,49 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: '100%' }} data-testid='stepper'>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: {
-            optional?: ReactNode;
-          } = {};
+    <Box
+      sx={{ width: '100%' }}
+      data-testid='stepper'
+      className='relative py-4 flex flex-col justify-between'
+    >
+      <div className='flex flex-col gap-5'>
+        <Stepper activeStep={activeStep}>
+          {steps.map((label, index) => {
+            const stepProps: { completed?: boolean } = {};
 
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel
-                sx={{ flexDirection: 'column', gap: '2px' }}
-                {...labelProps}
-              >
-                {label}
-              </StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel />
+              </Step>
+            );
+          })}
+        </Stepper>
+        <div className='w-full mb-[70px]'>
+          {stepOptions[activeStep].component}
+        </div>
+      </div>
 
-      <>
-        {stepOptions[activeStep].component}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            pt: 2,
-          }}
+      <Box className='fixed m-0 bottom-0 flex justify-around items-center w-full max-w-screen-md bg-white z-2 py-3'>
+        <Button
+          className=''
+          color='inherit'
+          disabled={activeStep === 0}
+          onClick={handleBack}
         >
-          <Button
-            color='inherit'
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            sx={{ mr: 1 }}
-          >
-            Back
-          </Button>
-          <Box sx={{ flex: '1 1 auto' }} />
+          Back
+        </Button>
 
-          <Button
-            onClick={
-              activeStep === steps.length - 1
-                ? handleReset
-                : handleNext
-            }
-          >
-            {stepOptions[activeStep].buttonText}
-          </Button>
-        </Box>
-      </>
+        <Button
+          className='transition duration-300 ease text-white bg-blue-500 hover:bg-gray-700 rounded-lg text-sm px-5 py-2.5'
+          onClick={
+            activeStep === steps.length - 1
+              ? handleReset
+              : handleNext
+          }
+        >
+          {stepOptions[activeStep].buttonText}
+        </Button>
+      </Box>
     </Box>
   );
 }
