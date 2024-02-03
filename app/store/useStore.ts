@@ -25,6 +25,7 @@ type State = {
 
 type Actions = {
   addParticipant: (name: string) => void;
+  removeParticipant: (name: string) => void;
   setTotalExpenses: (value: number) => void;
   updateContribution: (
     name: string,
@@ -35,24 +36,10 @@ type Actions = {
   reset: () => void;
 };
 
-const initialParticipantsDATA: participantType[] = [
-  { name: 'Fede', contribution: 600 },
-  { name: 'Nadia', contribution: 800 },
-  { name: 'Huw', contribution: 420 },
-  { name: 'Euge', contribution: 500 },
-  { name: 'Ivan', contribution: 300 },
-];
-
-const initialExpenses: number =
-  initialParticipantsDATA.reduce(
-    (acc, el) => acc + el.contribution,
-    0
-  );
-
 const initialState: State = {
-  participants: initialParticipantsDATA,
+  participants: [],
   transactions: [],
-  totalExpenses: initialExpenses,
+  totalExpenses: 0,
   activeStep: 0,
 };
 
@@ -64,6 +51,14 @@ export const useStore = create<State & Actions>()(
         participants: [
           ...get().participants,
           { name, contribution: 0 },
+        ],
+      }),
+    removeParticipant: (name: string) =>
+      set({
+        participants: [
+          ...get().participants.filter(
+            (participant) => participant.name !== name
+          ),
         ],
       }),
     setTotalExpenses: (value: number) =>
