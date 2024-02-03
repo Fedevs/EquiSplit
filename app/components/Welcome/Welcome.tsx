@@ -6,7 +6,7 @@ export default function Welcome() {
       className='p-4 max-w-2xl mx-auto'
     >
       <h1 className='text-3xl font-bold mb-4 text-center  '>
-        Expense Splitting App
+        EquiSplit
       </h1>
       <p className='text-gray-700'>
         This tool is designed to simplify the management of

@@ -8,7 +8,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'Split Expenses',
+  title: 'EquiSplit',
   description: 'An app for settling debts quickly.',
 };
 

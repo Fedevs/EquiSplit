@@ -11,7 +11,7 @@ const TransactionsComponent = () => {
       {transactions.map((transaction, index) => (
         <div
           key={index}
-          className='shadow rounded py-4 px-2'
+          className='shadow rounded py-4 px-2 text-center'
         >
           {transaction.from} owes{' '}
           <span className='font-bold text-xl text-red-500'>
