@@ -62,23 +62,23 @@ export default function ParticipantsList() {
       {participants.map(({ name, contribution }) => (
         <div
           key={name}
-          className='flex flex-col items-center gap-2 p-2 text-center rounded transition-shadow duration-300 ease-in-out shadow-md hover:shadow-lg focus:shadow-outline sm:flex-row sm:justify-between sm:text-left'
+          className='flex flex-col items-center gap-2 p-2 text-center rounded transition-shadow duration-300 ease-in-out shadow-md hover:shadow-lg focus:shadow-outline xs:flex-row xs:justify-between xs:text-left'
         >
           <div className='flex items-center w-full'>
             <span className='w-full'>
               {name}&apos;s contribution
             </span>
             <CloseButton
-              styles='py-2 px-4 sm:hidden font-bold'
+              styles='py-2 px-4 xs:hidden font-bold'
               onClick={() => handleRemoveParticipant(name)}
             />
           </div>
-          <div className='flex w-full'>
+          <div className='flex justify-end sm:w-full'>
             <input
               type='number'
               value={contribution >= 0 ? contribution : ''}
               min={0}
-              className='border border-gray-300 p-2 rounded w-full sm:w-[250px]'
+              className='border border-gray-300 p-2 rounded w-full xs:w-[150px] sm:w-[250px]'
               onChange={(e) =>
                 handleContributionChange(
                   name,
@@ -87,7 +87,7 @@ export default function ParticipantsList() {
               }
             />
             <CloseButton
-              styles='py-2 hidden sm:block px-4 font-bold'
+              styles='py-2 hidden xs:block px-4 font-bold'
               onClick={() => handleRemoveParticipant(name)}
             />
           </div>
