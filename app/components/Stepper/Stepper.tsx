@@ -19,25 +19,6 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
   const { activeStep, setActiveStep, reset } = useStore();
-  const [isMobile, setIsMobile] = useState<boolean>(true);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < 480);
-      }
-    };
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
-    }
-
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', handleResize);
-      }
-    };
-  }, [isMobile]);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
