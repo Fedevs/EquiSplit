@@ -73,10 +73,10 @@ export default function ParticipantsList() {
               onClick={() => handleRemoveParticipant(name)}
             />
           </div>
-          <div className='flex justify-end sm:w-full'>
+          <div className='flex justify-end w-full xs:w-80'>
             <input
               type='number'
-              value={contribution >= 0 ? contribution : ''}
+              value={contribution === 0 ? '' : contribution}
               min={0}
               className='border border-gray-300 p-2 rounded w-full xs:w-[150px] sm:w-[250px]'
               onChange={(e) =>

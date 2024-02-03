@@ -3,10 +3,14 @@ import { useStore } from '@/app/store/useStore';
 import ParticipantsList from '@/app/components/ParticipantsList/ParticipantsList';
 
 export default function ParticipantManager() {
-  const { participants, addParticipant, totalExpenses } =
-    useStore();
+  const {
+    participants,
+    error,
+    setError,
+    addParticipant,
+    totalExpenses,
+  } = useStore();
   const [newName, setNewName] = useState<string>('');
-  const [error, setError] = useState<string>('');
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = (
@@ -41,7 +45,7 @@ export default function ParticipantManager() {
   return (
     <section
       data-testid='participant-manager'
-      className='w-full flex flex-col items-center'
+      className='w-full flex flex-col items-center gap-3'
     >
       <div className='flex flex-col w-full gap-3'>
         <label
@@ -80,14 +84,16 @@ export default function ParticipantManager() {
           {error}
         </div>
       )}
-      <div className='flex my-5 flex justify-end items-center w-full'>
-        <div className='border py-2 px-4 rounded shadow-md'>
-          Total:&nbsp;
-          <span className='font-bold text-red-500 text-lg'>
-            {totalExpenses.toFixed(2)}
-          </span>
+      {participants.length > 1 && (
+        <div className='flex my-5 flex justify-end items-center w-full'>
+          <div className='border py-2 px-4 rounded shadow-md'>
+            Total:&nbsp;
+            <span className='font-bold text-red-500 text-lg'>
+              {totalExpenses.toFixed(2)}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
       <ParticipantsList />
     </section>
   );

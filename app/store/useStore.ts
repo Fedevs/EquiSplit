@@ -21,6 +21,7 @@ type State = {
   transactions: transactionType[];
   totalExpenses: number;
   activeStep: number;
+  error: string | undefined;
 };
 
 type Actions = {
@@ -33,6 +34,7 @@ type Actions = {
   ) => void;
   setTransactions: setTransactionsType;
   setActiveStep: (step: number) => void;
+  setError: (error: string) => void;
   reset: () => void;
 };
 
@@ -41,6 +43,7 @@ const initialState: State = {
   transactions: [],
   totalExpenses: 0,
   activeStep: 0,
+  error: '',
 };
 
 export const useStore = create<State & Actions>()(
@@ -79,6 +82,7 @@ export const useStore = create<State & Actions>()(
       set({ transactions }),
     setActiveStep: (step: number) =>
       set({ activeStep: step }),
+    setError: (error) => set({ error }),
     reset: () => {
       set(initialState);
     },

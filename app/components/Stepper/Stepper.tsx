@@ -18,9 +18,27 @@ const steps = [
 ];
 
 export default function HorizontalLinearStepper() {
-  const { activeStep, setActiveStep, reset } = useStore();
+  const {
+    activeStep,
+    setActiveStep,
+    participants,
+    reset,
+    setError,
+  } = useStore();
 
   const handleNext = () => {
+    setError('');
+    if (
+      !minimumParticipants() &&
+      stepOptions[
+        activeStep
+      ].buttonText.toLocaleLowerCase() === 'calculate'
+    ) {
+      setError(
+        'Add a minimum of 2 participants to continue'
+      );
+      return;
+    }
     setActiveStep(activeStep + 1);
   };
 
@@ -30,6 +48,10 @@ export default function HorizontalLinearStepper() {
 
   const handleReset = () => {
     reset();
+  };
+
+  const minimumParticipants = (): boolean => {
+    return participants.length >= 2;
   };
 
   const stepOptions: Record<
