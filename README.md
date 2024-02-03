@@ -12,7 +12,8 @@
    - [Custom Share](#custom-share)
    - [Translation](#translation)
    - [Dark theme](#dark-theme)
-5. [Contact](#contact)
+5. [PageSpeed Insights](#pagespeed-insights)
+6. [Contact](#contact)
 
 
 # Overview
@@ -47,6 +48,24 @@ The app is going to be available in Spanish soon
 
 ## Dark theme
 For those who loves a dark background
+
+# PageSpeed Insights
+
+It is important for a website to load quickly, have good SEO, and prioritize accessibility for the following reasons:
+
+**User Experience:** Fast-loading websites provide a better user experience. Users expect quick access to content, and a slow website can lead to frustration and high bounce rates.
+
+**Search Engine Optimization (SEO):** Good SEO practices help a website rank higher in search engine results. This means more visibility and organic traffic, which can be crucial for the success of an online presence.
+
+**Accessibility:** Prioritizing accessibility ensures that the website is usable by all individuals, including those with disabilities. It promotes inclusivity and compliance with legal requirements, enhancing the website's reach and reputation.
+
+That's why I decided to use Google's tool called [PageSpeed Insights](https://developers.google.com/speed/docs/insights/v5/about) to ensure that the application complies with the standards of the top search engine today.
+
+## Desktop
+![image](https://github.com/Fedevs/EquiSplit/assets/86263343/6acf8978-90be-4b8d-a379-55fe792f4d29)
+
+## Mobile
+![image](https://github.com/Fedevs/EquiSplit/assets/86263343/85ca0190-b9bf-4acf-94da-5628988f0d25)
 
 
 # Contact
