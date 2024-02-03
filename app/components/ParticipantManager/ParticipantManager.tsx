@@ -1,17 +1,13 @@
-'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useStore } from '@/app/store/useStore';
 import ParticipantsList from '@/app/components/ParticipantsList/ParticipantsList';
 
 export default function ParticipantManager() {
-  const { participants, addParticipant } = useStore();
+  const { participants, addParticipant, totalExpenses } =
+    useStore();
   const [newName, setNewName] = useState<string>('');
   const [error, setError] = useState<string>('');
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    inputRef?.current?.focus();
-  }, [participants]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -34,6 +30,7 @@ export default function ParticipantManager() {
     } else if (isUniqueName(newName)) {
       addParticipant(newName);
       setNewName('');
+      inputRef?.current?.focus();
     } else {
       setError(
         'A participant with the same name already exists. Consider using a nickname.'
@@ -42,29 +39,56 @@ export default function ParticipantManager() {
   };
 
   return (
-    <section data-testid='participant-manager'>
-      <label htmlFor='newName'>Add participant: </label>
-      <input
-        type='text'
-        ref={inputRef}
-        id='newName'
-        name='newName'
-        value={newName}
-        onChange={handleChange}
-        onKeyDown={(e) =>
-          e.key === 'Enter' && handleAddParticipantClick()
-        }
-      />
-      <button
-        type='button'
-        onClick={handleAddParticipantClick}
-      >
-        Add
-      </button>
+    <section
+      data-testid='participant-manager'
+      className='w-full flex flex-col items-center'
+    >
+      <div className='flex flex-col w-full gap-3'>
+        <label
+          htmlFor='newName'
+          className='font-bold text-center text-xl'
+        >
+          Add participant
+        </label>
+        <div className='flex flex-col justify-center gap-1 xs:flex-row'>
+          <input
+            type='text'
+            ref={inputRef}
+            id='newName'
+            name='newName'
+            value={newName}
+            maxLength={10}
+            onChange={handleChange}
+            onKeyDown={(e) =>
+              e.key === 'Enter' &&
+              handleAddParticipantClick()
+            }
+            className='border border-gray-300 p-2 rounded'
+          />
+          <button
+            type='button'
+            onClick={handleAddParticipantClick}
+            className='transition duration-300 ease text-white bg-blue-500 hover:bg-gray-700 rounded-lg text-sm px-5 py-2.5'
+          >
+            ADD
+          </button>
+        </div>
+      </div>
 
+      {error && (
+        <div className='text-red-500 font-bold my-2 text-center'>
+          {error}
+        </div>
+      )}
+      <div className='flex my-5 flex justify-end items-center w-full'>
+        <div className='border py-2 px-4 rounded shadow-md'>
+          Total:&nbsp;
+          <span className='font-bold text-red-500 text-lg'>
+            {totalExpenses.toFixed(2)}
+          </span>
+        </div>
+      </div>
       <ParticipantsList />
-
-      {error && <div>{error}</div>}
     </section>
   );
 }

@@ -5,7 +5,6 @@ export default function ParticipantsList() {
     participants,
     updateContribution,
     setTotalExpenses,
-    totalExpenses,
   } = useStore();
 
   const handleContributionChange = (
@@ -29,23 +28,32 @@ export default function ParticipantsList() {
   };
 
   return (
-    <div>
-      <div className='my-9' data-testid='participants-list'>
-        TOTAL: {totalExpenses}
-      </div>
-      {participants.map(({ name, contribution }) => (
-        <div key={name}>
-          Name: <span>{name}</span>, Contribution:
-          <input
-            type='number'
-            value={contribution > 0 ? contribution : ''}
-            min={0}
-            onChange={(e) =>
-              handleContributionChange(name, e.target.value)
-            }
-          />
-        </div>
-      ))}
+    <div
+      className='w-full flex flex-col gap-3'
+      data-testid='participants-list'
+    >
+      <form className='flex flex-col gap-3'>
+        {participants.map(({ name, contribution }) => (
+          <div
+            key={name}
+            className='flex rounded transition-shadow duration-300 ease-in-out shadow-md hover:shadow-lg focus:shadow-outline active:shadow-xl flex-col p-2 items-center rounded gap-2 sm:flex-row sm:items-center sm:justify-between'
+          >
+            <span>{name}&apos;s contribution</span>
+            <input
+              type='number'
+              value={contribution >= 0 ? contribution : ''}
+              min={0}
+              className='border border-gray-300 p-2 rounded w-full sm:w-[215px]'
+              onChange={(e) =>
+                handleContributionChange(
+                  name,
+                  e.target.value
+                )
+              }
+            />
+          </div>
+        ))}
+      </form>
     </div>
   );
 }
