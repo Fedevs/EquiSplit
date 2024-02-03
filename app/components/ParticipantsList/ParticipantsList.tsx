@@ -5,7 +5,6 @@ export default function ParticipantsList() {
     participants,
     updateContribution,
     setTotalExpenses,
-    totalExpenses,
   } = useStore();
 
   const handleContributionChange = (
@@ -29,16 +28,10 @@ export default function ParticipantsList() {
   };
 
   return (
-    <div className='w-full flex flex-col gap-3 px-1'>
-      <div
-        className='flex items-center my-5 justify-center'
-        data-testid='participants-list'
-      >
-        Total:&nbsp;
-        <span className='font-bold text-red-500 text-lg'>
-          {totalExpenses.toFixed(2)}
-        </span>
-      </div>
+    <div
+      className='w-full flex flex-col gap-3'
+      data-testid='participants-list'
+    >
       <form className='flex flex-col gap-3'>
         {participants.map(({ name, contribution }) => (
           <div

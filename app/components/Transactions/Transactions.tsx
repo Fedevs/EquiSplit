@@ -6,7 +6,7 @@ const TransactionsComponent = () => {
   return (
     <section
       data-testid='transactions'
-      className='flex flex-col gap-4 px-2'
+      className='flex flex-col gap-4'
     >
       {transactions.map((transaction, index) => (
         <div

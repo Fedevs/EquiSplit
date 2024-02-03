@@ -55,22 +55,6 @@ export default function Welcome() {
         </p>
       </div>
 
-      <div className='mt-6'>
-        <h2 className='text-xl font-semibold mb-2'>
-          Quick Tips:
-        </h2>
-        <ul className='list-disc list-inside text-gray-700'>
-          <li>
-            Ensure you enter information accurately at each
-            step.
-          </li>
-          <li>
-            Feel free to go back and adjust contributions
-            before making the final calculation.
-          </li>
-        </ul>
-      </div>
-
       <p className='mt-6 text-gray-700'>
         Let&apos;s get started on fairly and efficiently
         splitting those expenses!

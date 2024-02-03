@@ -3,7 +3,8 @@ import { useStore } from '@/app/store/useStore';
 import ParticipantsList from '@/app/components/ParticipantsList/ParticipantsList';
 
 export default function ParticipantManager() {
-  const { participants, addParticipant } = useStore();
+  const { participants, addParticipant, totalExpenses } =
+    useStore();
   const [newName, setNewName] = useState<string>('');
   const [error, setError] = useState<string>('');
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -45,11 +46,11 @@ export default function ParticipantManager() {
       <div className='flex flex-col w-full gap-3'>
         <label
           htmlFor='newName'
-          className='font-bold text-center'
+          className='font-bold text-center text-xl'
         >
           Add participant
         </label>
-        <div className='flex flex-col justify-center gap-1 px-2 xs:flex-row'>
+        <div className='flex flex-col justify-center gap-1 xs:flex-row'>
           <input
             type='text'
             ref={inputRef}
@@ -73,11 +74,20 @@ export default function ParticipantManager() {
           </button>
         </div>
       </div>
+
       {error && (
-        <div className='text-red-500 my-2 text-center'>
+        <div className='text-red-500 font-bold my-2 text-center'>
           {error}
         </div>
       )}
+      <div className='flex my-5 flex justify-end items-center w-full'>
+        <div className='border py-2 px-4 rounded shadow-md'>
+          Total:&nbsp;
+          <span className='font-bold text-red-500 text-lg'>
+            {totalExpenses.toFixed(2)}
+          </span>
+        </div>
+      </div>
       <ParticipantsList />
     </section>
   );
