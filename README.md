@@ -5,7 +5,7 @@
 1. [Overview](#overview)
 2. [Screenshots](#screenshots)
    - [Step 1 - Overview](#step-1)
-   - [Step 2 - Form](#step-2)
+   - [Step 2 - Form](#step-2---make-sure-keylito-is-happy)
    - [Step 3 - Transactions](#step-3)
 3. [Usage](#usage)
 4. [Next features](#next-features)
@@ -26,11 +26,11 @@ We've all been there – that moment when a group of friends or roommates gather
 ## Step 1
 ![image](https://github.com/Fedevs/SplitExpenses/assets/86263343/df77d9dd-e9f1-4b78-8530-845b129effcd)
 
-## Step 2
-![image](https://github.com/Fedevs/SplitExpenses/assets/86263343/216fbaf0-8710-4751-b850-c0e69cfecc92)
+## Step 2 - Make sure Keylito is happy
+![image](https://github.com/Fedevs/EquiSplit/assets/86263343/f4587aae-0d16-48c7-a26b-88b9ffa6b9d8) ![image](https://github.com/Fedevs/EquiSplit/assets/86263343/a1a2df7c-0f7a-4b53-818e-51c0d45bdf7c) ![image](https://github.com/Fedevs/EquiSplit/assets/86263343/676a9759-8ec3-4839-bd90-ec4092c974db)
 
 ## Step 3
-![image](https://github.com/Fedevs/SplitExpenses/assets/86263343/d277da13-838d-42c0-9fe5-767e22d030ba)
+![image](https://github.com/Fedevs/EquiSplit/assets/86263343/afbc1c4a-3819-448c-abc1-7851bc90c9c9)
 
 
 # Usage
