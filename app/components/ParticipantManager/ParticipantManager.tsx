@@ -50,7 +50,7 @@ export default function ParticipantManager() {
       data-testid='participant-manager'
       className='w-full flex flex-col items-center gap-3'
     >
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-2 justify-center w-full'>
         <div className='flex w-full items-center gap-3'>
           <label
             htmlFor='newName'

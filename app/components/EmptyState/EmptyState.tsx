@@ -19,7 +19,7 @@ export default function EmptyState() {
             width={300}
             height={500}
           />
-          <p className='text-2xl'>
+          <p className='text-2xl text-center'>
             Add participants before Keylito gets mad.
           </p>
         </>
@@ -32,7 +32,7 @@ export default function EmptyState() {
             width={300}
             height={500}
           />
-          <p className='text-2xl'>
+          <p className='text-2xl text-center'>
             He has someone to play with, but still needs one
             more.
           </p>
