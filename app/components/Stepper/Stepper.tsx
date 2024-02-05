@@ -79,7 +79,7 @@ export default function HorizontalLinearStepper() {
     >
       <div className='flex flex-col gap-5'>
         <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
+          {steps.map((label) => {
             const stepProps: { completed?: boolean } = {};
 
             return (

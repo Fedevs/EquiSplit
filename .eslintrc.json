@@ -2,6 +2,7 @@
   "extends": "next/core-web-vitals",
   "rules": {
     "no-console": "error",
-    "no-debugger": "error"
+    "no-debugger": "error",
+    "no-unused-vars": "error"
   }
 }
