@@ -23,21 +23,30 @@ export default function HorizontalLinearStepper() {
     participants,
     reset,
     setError,
+    totalExpenses,
   } = useStore();
 
   const handleNext = () => {
     setError('');
-    if (
-      !minimumParticipants() &&
+    const isCalculateButton =
       stepOptions[
         activeStep
-      ].buttonText.toLocaleLowerCase() === 'calculate'
-    ) {
-      setError(
-        'Add a minimum of 2 participants to continue'
-      );
-      return;
+      ].buttonText.toLocaleLowerCase() === 'calculate';
+    if (isCalculateButton) {
+      if (!minimumParticipants()) {
+        setError(
+          'Add a minimum of 2 participants to continue'
+        );
+        return;
+      }
+      if (!minimumExpenses()) {
+        setError(
+          'Your total expenses must be greater than 0'
+        );
+        return;
+      }
     }
+
     setActiveStep(activeStep + 1);
   };
 
@@ -51,6 +60,10 @@ export default function HorizontalLinearStepper() {
 
   const minimumParticipants = (): boolean => {
     return participants.length >= 2;
+  };
+
+  const minimumExpenses = (): boolean => {
+    return totalExpenses > 0;
   };
 
   const stepOptions: Record<

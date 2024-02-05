@@ -31,10 +31,23 @@ describe('Stepper', () => {
     fireEvent.click(addButton);
 
     fireEvent.change(input, {
-      target: { value: 'Di Maria' },
+      target: { value: 'Fede' },
     });
 
     fireEvent.click(addButton);
+
+    const messiContributionInput = screen.getByTestId(
+      'Lio Messi_contribution'
+    );
+    const fedeContributionInput = screen.getByTestId(
+      'Fede_contribution'
+    );
+    fireEvent.change(messiContributionInput, {
+      target: { value: 200 },
+    });
+    fireEvent.change(fedeContributionInput, {
+      target: { value: 400 },
+    });
 
     fireEvent.click(calculateButton);
 

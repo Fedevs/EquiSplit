@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react';
 import { useStore } from '@/app/store/useStore';
 import ParticipantsList from '@/app/components/ParticipantsList/ParticipantsList';
-import EmptyState from '../EmptyState/EmptyState';
+import EmptyState from '@/app/components/EmptyState/EmptyState';
 import happyDachshund from '@/public/happy-dachshund.webp';
 import Image from 'next/image';
+import 'animate.css';
 
 export default function ParticipantManager() {
   const {
@@ -48,7 +49,7 @@ export default function ParticipantManager() {
   return (
     <section
       data-testid='participant-manager'
-      className='w-full flex flex-col items-center gap-3'
+      className='w-full flex flex-col items-center gap-3 animate__animated animate__fadeIn'
     >
       <div className='flex flex-col gap-2 justify-center w-full'>
         <div className='flex w-full items-center gap-3'>
@@ -60,6 +61,7 @@ export default function ParticipantManager() {
           </label>
           {participants.length > 1 && (
             <Image
+              className='animate__animated animate__fadeIn'
               src={happyDachshund}
               alt='angry dachshund'
               style={{
@@ -97,12 +99,12 @@ export default function ParticipantManager() {
       </div>
 
       {error && (
-        <div className='text-red-500 font-bold my-2 text-center'>
+        <div className='text-red-500 font-bold my-2 text-center animate__animated animate__fadeIn'>
           {error}
         </div>
       )}
       {participants.length > 1 && (
-        <div className='flex my-5 flex justify-end items-center w-full'>
+        <div className='flex my-5 flex justify-end items-center w-full animate__animated animate__fadeIn'>
           <div className='border py-2 px-4 rounded shadow-md'>
             Total:&nbsp;
             <span className='font-bold text-red-500 text-lg'>

@@ -1,4 +1,5 @@
 import { useStore } from '@/app/store/useStore';
+import 'animate.css';
 
 interface CloseButtonProps {
   onClick: () => void;
@@ -62,7 +63,7 @@ export default function ParticipantsList() {
       {participants.map(({ name, contribution }) => (
         <div
           key={name}
-          className='flex flex-col items-center gap-2 p-2 text-center rounded transition-shadow duration-300 ease-in-out shadow-md hover:shadow-lg focus:shadow-outline xs:flex-row xs:justify-between xs:text-left'
+          className='flex flex-col items-center gap-2 p-2 text-center rounded transition-shadow duration-300 ease-in-out shadow-md hover:shadow-lg focus:shadow-outline xs:flex-row xs:justify-between xs:text-left animate__animated animate__fadeIn'
         >
           <div className='flex items-center w-full'>
             <span className='w-full'>
@@ -76,6 +77,7 @@ export default function ParticipantsList() {
           <div className='flex justify-end w-full xs:w-80'>
             <input
               type='number'
+              data-testid={`${name}_contribution`}
               value={contribution === 0 ? '' : contribution}
               min={0}
               className='border border-gray-300 p-2 rounded w-full xs:w-[150px] sm:w-[250px]'
