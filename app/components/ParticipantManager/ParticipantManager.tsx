@@ -62,8 +62,12 @@ export default function ParticipantManager() {
             <Image
               src={happyDachshund}
               alt='angry dachshund'
-              width={40}
-              height={60}
+              style={{
+                width: '40px',
+                height: 'auto',
+              }}
+              priority
+              placeholder='blur'
             />
           )}
         </div>

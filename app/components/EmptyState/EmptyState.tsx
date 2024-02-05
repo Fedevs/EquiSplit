@@ -16,8 +16,12 @@ export default function EmptyState() {
           <Image
             src={angryDachshund}
             alt='angry dachshund'
-            width={300}
-            height={500}
+            style={{
+              width: '100%',
+              height: 'auto',
+            }}
+            priority
+            placeholder='blur'
           />
           <p className='text-2xl text-center'>
             Add participants before Keylito gets mad.
@@ -29,8 +33,12 @@ export default function EmptyState() {
           <Image
             src={lessAngryDachshund}
             alt='less angry dachshund'
-            width={300}
-            height={500}
+            style={{
+              width: '100%',
+              height: 'auto',
+            }}
+            priority
+            placeholder='blur'
           />
           <p className='text-2xl text-center'>
             He has someone to play with, but still needs one
