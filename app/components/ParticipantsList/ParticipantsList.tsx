@@ -56,7 +56,7 @@ export default function ParticipantsList() {
 
   return (
     <div
-      className='w-full flex flex-col gap-3'
+      className='w-full flex flex-col gap-3 mt-5 rounded'
       data-testid='participants-list'
     >
       {participants.map(({ name, contribution }) => (

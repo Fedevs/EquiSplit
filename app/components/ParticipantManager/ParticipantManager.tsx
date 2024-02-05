@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react';
 import { useStore } from '@/app/store/useStore';
 import ParticipantsList from '@/app/components/ParticipantsList/ParticipantsList';
+import EmptyState from '../EmptyState/EmptyState';
+import happyDachshund from '@/public/happy-dachshund.webp';
+import Image from 'next/image';
 
 export default function ParticipantManager() {
   const {
@@ -47,13 +50,23 @@ export default function ParticipantManager() {
       data-testid='participant-manager'
       className='w-full flex flex-col items-center gap-3'
     >
-      <div className='flex flex-col w-full gap-3'>
-        <label
-          htmlFor='newName'
-          className='font-bold text-center text-xl'
-        >
-          Add participant
-        </label>
+      <div className='flex flex-col gap-2'>
+        <div className='flex w-full items-center gap-3'>
+          <label
+            htmlFor='newName'
+            className='font-bold text-center text-xl w-full'
+          >
+            Add participant
+          </label>
+          {participants.length > 1 && (
+            <Image
+              src={happyDachshund}
+              alt='angry dachshund'
+              width={40}
+              height={60}
+            />
+          )}
+        </div>
         <div className='flex flex-col justify-center gap-1 xs:flex-row'>
           <input
             type='text'
@@ -94,7 +107,9 @@ export default function ParticipantManager() {
           </div>
         </div>
       )}
+
       <ParticipantsList />
+      {participants.length < 2 && <EmptyState />}
     </section>
   );
 }

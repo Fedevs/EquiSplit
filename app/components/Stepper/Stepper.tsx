@@ -5,7 +5,6 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import { useEffect, useState } from 'react';
 import { useStore } from '@/app/store/useStore';
 import Welcome from '@/app/components/Welcome/Welcome';
 import ParticipantManager from '@/app/components/ParticipantManager/ParticipantManager';
