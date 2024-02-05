@@ -43,11 +43,6 @@ In the second step, you need to add participants along with their contributions,
 ## Custom Share
 When adding participants and their contributions, you can specify the percentage of participation for each person. This allows for a more flexible calculation, ensuring that expenses are distributed according to each individual's share. For example, if one person contributes $600 and another contributes $400, and the first person has a 60% participation, while the second has 40%, the app will accurately calculate the amounts owed, considering the custom percentage distribution (0 in this example).
 
-## Translation
-The app is going to be available in Spanish soon
-
-## Dark theme
-For those who loves a dark background
 
 # PageSpeed Insights
 
