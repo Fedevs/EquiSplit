@@ -10,8 +10,6 @@
 3. [Usage](#usage)
 4. [Next features](#next-features)
    - [Custom Share](#custom-share)
-   - [Translation](#translation)
-   - [Dark theme](#dark-theme)
 5. [PageSpeed Insights](#pagespeed-insights)
 6. [Contact](#contact)
 
